@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/05 16:26:53 by echernys         ###   ########.fr       */
+/*   Created: 2024/12/05 16:24:44 by echernys          #+#    #+#             */
+/*   Updated: 2024/12/05 16:30:58 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-char	**calc_solution()
+void	pa(t_stacks **stacks)
 {
-	
-
 	
 }
 
-void push_swap()
-{
-	calc_solution()
-	ft_printf()
-	ft_printf()	
-}
+void	pb(t_stack **stacks)
