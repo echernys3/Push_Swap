@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void	sa(t_stack **head, t_stacks **stacks)
 {
 	t_stack	*temp;
@@ -57,3 +59,5 @@ void	ss(t_stacks *stacks)
 	stacks->operations++;
 	ft_printf("ss\n");
 }
+
+// A voir si je veux laisser le head->next == NULL partout ou pas, car ça pourrait casser le code r que 2 nodes.

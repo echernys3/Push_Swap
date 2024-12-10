@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void	pa(t_stacks **stacks)
 {
 	t_stack	*temp;
@@ -26,7 +28,7 @@ void	pa(t_stacks **stacks)
 	ft_printf("pa\n");
 }
 
-void	pb(t_stack **stacks)
+void	pb(t_stacks **stacks)
 {
 	t_stack	*temp;
 

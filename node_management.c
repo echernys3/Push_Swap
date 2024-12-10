@@ -6,15 +6,16 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:15 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/05 15:39:22 by echernys         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:26:31 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 static t_stack	**sort_values(t_stack **values, int count)
 {
-	t_stack *temp;
-	int	i;
-	int	j;
+	t_stack	*temp;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < count - 1)
@@ -50,14 +51,14 @@ static t_stack	**update_index(t_stack **values, int count)
 
 t_stack	**index_t_stack(t_stack *head)
 {
-	t_stack *temp;
-	int count;
-	t_stack **values;
+	t_stack	*temp;
+	int		count;
+	t_stack	**values;
 
 	if (head == NULL)
 		return (NULL);
 	temp = head;
-	values = malloc(ft_lstsize(temp) * sizeof(t_stack*));
+	values = malloc(ft_lstsize(temp) * sizeof(*t_stack));
 	if (!values)
 		return ;
 	temp = head;
@@ -74,10 +75,12 @@ t_stack	**index_t_stack(t_stack *head)
 }
 
 
-// t_stack	*create_node(int number)
-// {
-// 	t_stack *new_node = malloc(sizeof(t_stack));
-// 	new_node -> number = number;
-// 	new_node -> next = NULL;
-// 	return (new_node);
-//}
+t_stack	*create_node(int number)
+{
+	t_stack	*new_node;
+
+	new_node = malloc(sizeof(t_stack));
+	new_node -> number = number;
+	new_node -> next = NULL;
+	return (new_node);
+}
