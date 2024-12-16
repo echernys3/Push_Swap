@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:04 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/05 16:24:00 by echernys         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:30:13 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void	ss(t_stacks *stacks)
 	ft_printf("ss\n");
 }
 
-// A voir si je veux laisser le head->next == NULL partout ou pas, car ça pourrait casser le code r que 2 nodes.
+// A voir si je veux laisser le head->next == NULL 
+//partout ou pas, car ça pourrait casser le code pr que 2 nodes.

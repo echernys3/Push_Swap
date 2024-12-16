@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rrr_funcs.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 13:29:46 by echernys          #+#    #+#             */
+/*   Updated: 2024/12/10 13:29:46 by echernys         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	copy_rra(t_stacks **stacks)
 {
 	t_stack	*temp;
-	t_stack *last;
+	t_stack	*last;
 
 	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
 		return ;
@@ -17,7 +29,7 @@ static void	copy_rra(t_stacks **stacks)
 static void	copy_rrb(t_stacks **stacks)
 {
 	t_stack	*temp;
-	t_stack *last;
+	t_stack	*last;
 
 	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
 		return ;
