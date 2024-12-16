@@ -1,49 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/10 14:47:38 by echernys         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:47:48 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	freer(t_stack *stack)
-{
-	t_stack	temp;
-
-	temp = stack;
-	while (stack != NULL)
-	{
-		temp = stack -> next;
-		free(stack);
-		stack = temp;
-	}
-}
-
 void	push_swap(t_stacks **stacks)
 {
 	if ((*stacks)->size_a == 3)
+		sort_3((*stacks)->stack_a);
+	if (!(a_sorted((*stacks)->stack_a)))
 		return ;
-	while ((*stacks)->size_a > 3)
-	{
-		if ((*stacks)->stack_a->index > (*stacks)->stack_b->index
-			|| !(*stacks)->stack_b)
-		{
-			if ((*stacks)->stack_a->index < (*stacks)->stack_a->next->index)
-				pb(stacks);
-			else if ((*stacks)->stack_a->next->index
-				> (*stacks)->stack_a->next->next->index)
-			{
-				
-			}
-			else
-		}
-	}
+	sort(stacks);
+	check_b((*stacks)->stack_b);
+	push_swap(stacks);
 }
 
 int	main(int argc, char **argv)

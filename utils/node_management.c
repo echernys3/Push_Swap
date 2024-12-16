@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:15 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/10 13:26:31 by echernys         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:30:32 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,17 @@ t_stack	*create_node(int number)
 	new_node -> number = number;
 	new_node -> next = NULL;
 	return (new_node);
+}
+
+void	freer(t_stack **stack)
+{
+	t_stack	*temp;
+
+	temp = *stack;
+	while (stack != NULL)
+	{
+		temp = stack -> next;
+		free(stack);
+		stack = temp;
+	}
 }
