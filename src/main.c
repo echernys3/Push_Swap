@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/16 15:47:48 by echernys         ###   ########.fr       */
+/*   Updated: 2024/12/19 12:54:24 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@ int	main(int argc, char **argv)
 		return (1);
 	while (argv[i][0])
 	{
+		if (!check_input(argv[i][0]))
+		{
+			freer(stacks);
+			ft_printf("Error, wrong input!");
+			return ;
+		}
 		newnode = create_node(argv[i][0]);
 		ft_lstadd_back((*stacks)->stack_a, newnode);
 		i++;
 	}
-	push_swap(stacks);
+	index_t_stack((*stacks)->stack_a);
+	if (check_doubles(*stacks)->stack_a)
+		push_swap(stacks);
 	ft_printf("%d", (*stacks)->operations);
 	freer((*stacks)->stack_a);
 	free(**stacks);
