@@ -15,31 +15,39 @@
 void	sort(t_stack *stack_a, t_stacks **stacks)
 {
 	t_stack *last;
+	t_stack *secondtolast;
 
 	last = ft_lstlast(stack_a);
-	//check si le 1er, 2eme ou 2 derniers dans a sont TOUS plus grand que le premier dans b
+	secondtolast = secondlast(stack_a);
+	//on determine si le plus petit est dans les 2 premiers ou 2 derniers
+	//check lequel des 2 premiers est plus petit
+	if (stack_a->index < stack_a->next->index)
+	{
+		if (last->index < stack_a->index
+			|| secondtolast->index < stack_a->index)
+			last_is_smol(last, stacks);
+		else
+			first_is_smol((*stacks)->stack_b, stacks);
+	}
+	else if (stack_a->index > stack_a->next->index)
+	{
+		if (last->index < stack_a->next->index
+			|| secondtolast->index < stack_a->next->index)
+			last_is_smol(last, stacks);
+		else
+			first_is_smol((*stacks)->stack_b, stacks);
+	}
+
+	// une fois qu'on a trouvé le plus petit des 4, on fait les checks nécessaires dans le stack b -> refaire la condition
 	if ((stack_a->index > (*stacks)->stack_b->index
 			&& stack_a->next->index > (*stacks)->stack_b->index
 			&& last->index > (*stacks)->stack_b->index
-			&& secondlast(stack_a)->index > (*stacks)->stack_b->index)
+			&& secondtolast->index > (*stacks)->stack_b->index)
 		|| !(*stacks)->stack_b)
-	{
-		//on determine si c'est dans les 2 premiers ou 2 derniers
-		if (last->index < stack_a->index
-			|| (secondlast(stack_a)->index) < last->index)
-			last_a_bigger(last, stacks);
-		else
-			a_is_bigger(stacks);
-	}
-	else
-	// si on passe ici, c'est qu'on a un chiffre qui doit etre repositionne dans b
-	{
-		if ()
-		sort_a_is_smaller(stacks);
-	}
+	sort_in_b(stacks);
 }
 
-void	a_is_bigger(t_stack stack_a, t_stacks **stacks)
+void	first_is_smol(t_stack *stack_a, t_stacks **stacks)
 {
 
 	// si c'est le deuxieme, on fait un swap ou rotation selon si le 1er est plus petit que le 3eme
@@ -47,23 +55,24 @@ void	a_is_bigger(t_stack stack_a, t_stacks **stacks)
 	{
 		if (stack_a->index > stack_a->next->next->index)
 			ra(stacks);
-		sa(stacks);
+		sa(stacks, stacks);
 	}
 	// si le 1er est le plus petit des 3, on push tout simplement sinon il passe en dernier
 	pb(stacks);
 }
 
-void	last_a_bigger(t_stack *last, t_stacks **stacks)
+void	last_is_smol(t_stack *last, t_stacks **stacks)
 {
 	// check si l'avant dernier n'est pas plus petit, ensuite on reverserotate et push
-	if ((secondlast((*stacks->stack_a))->index) < last->index)
+	if ((secondlast((*stacks)->stack_a)->index) < last->index)
 		rra(stacks);
 	rra(stacks);
 	pb(stacks);
 }
 
-void	a_is_smaller(t_stacks **stacks)
+void	a_is_smaller(t_stack *stack_b, t_stack *stack_a, t_stacks **stacks)
 {
+	if ()
 	// On fait LA MEME mais en INVERSE, donc on trouve le plus petit des 4 et on le balance.
 	// Ensuite faut le comparer au deuxieme.
 	// Si on peut swap (= seulement si 2 elements ou bien i2 = i1-1)
