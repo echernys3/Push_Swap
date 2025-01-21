@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:15 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/16 11:30:32 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:34:55 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_stack	**update_index(t_stack **values, int count)
 	return (values);
 }
 
-t_stack	**index_t_stack(t_stack *head)
+t_stack	**index_t_stack(t_stacks **stacks, t_stack *head)
 {
 	t_stack	*temp;
 	int		count;
@@ -60,7 +60,7 @@ t_stack	**index_t_stack(t_stack *head)
 	temp = head;
 	values = malloc(ft_lstsize(temp) * sizeof(*t_stack));
 	if (!values)
-		return ;
+		exit_error(stacks, ERR_ALLOC);
 	temp = head;
 	count = 0;
 	while (temp != NULL)
@@ -74,26 +74,14 @@ t_stack	**index_t_stack(t_stack *head)
 	return (head);
 }
 
-
-t_stack	*create_node(int number)
+t_stack	*create_node(t_stacks **stacks, char *number)
 {
 	t_stack	*new_node;
 
 	new_node = malloc(sizeof(t_stack));
-	new_node -> number = number;
+	if (!new_node)
+		exit_error(stacks, ERR_ALLOC);
+	new_node -> number = ps_atoi(number);
 	new_node -> next = NULL;
 	return (new_node);
-}
-
-void	freer(t_stack **stack)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	while (stack != NULL)
-	{
-		temp = stack -> next;
-		free(stack);
-		stack = temp;
-	}
 }

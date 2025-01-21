@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:28:45 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/16 11:40:55 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:41:48 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_stacks
 t_stack	**index_t_stack(t_stack *head);
 t_stack	*create_node(int number);
 
-int	is_sorted(t_stack **stack);
+int		is_sorted(t_stack **stack);
 
 void	sa(t_stack **head, t_stacks **stacks);
 void	sb(t_stack **head, t_stacks **stacks);

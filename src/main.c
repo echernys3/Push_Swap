@@ -6,11 +6,21 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/19 12:54:24 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:57:19 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	exit_error(t_stacks **stacks, int errnum)
+{
+	if (errnum)
+		print_error(errnum);
+	if ((*stacks)->stack_b)
+		freer((*stacks)->stack_b);
+	freer((*stacks)->stack_a);
+	free(**stacks);
+}
 
 void	push_swap(t_stacks **stacks)
 {
@@ -32,16 +42,10 @@ int	main(int argc, char **argv)
 	i = 1;
 	stacks = malloc(sizeof(t_stacks));
 	if (!stacks)
-		return (1);
-	while (argv[i][0])
+		exit_error(stacks, ERR_ALLOC);
+	while (argc--)
 	{
-		if (!check_input(argv[i][0]))
-		{
-			freer(stacks);
-			ft_printf("Error, wrong input!");
-			return ;
-		}
-		newnode = create_node(argv[i][0]);
+		newnode = create_node(argv[i]);
 		ft_lstadd_back((*stacks)->stack_a, newnode);
 		i++;
 	}
@@ -49,6 +53,5 @@ int	main(int argc, char **argv)
 	if (check_doubles(*stacks)->stack_a)
 		push_swap(stacks);
 	ft_printf("%d", (*stacks)->operations);
-	freer((*stacks)->stack_a);
-	free(**stacks);
+	exit_error(stacks, 0);
 }
