@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:24:31 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 14:20:37 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:01:48 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ int	a_sorted(t_stack **stack)
 	return (0);
 }
 
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
-	i = 0;
-	while (temp && temp->next)
-	{
-		if (temp->index < temp->next->index)
-			return (i);
-		i++;
-		temp = temp -> next;
-	}
-	return (0);
-}
 
 int	ps_atoi(const char *str, t_stacks **stacks)
 {

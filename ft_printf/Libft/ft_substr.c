@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:58 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:37:59 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-t_stack	*secondlast(t_stack *stack)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_stack	*temp;
+	char	*s2;
+	size_t	i;
 
-	if (stack == NULL || stack->next == NULL)
+	if (!(s))
 		return (NULL);
-	temp = stack;
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	return (temp);
-}
-
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
-	i = 0;
-	while (temp && temp->next)
+	if ((size_t)ft_strlen(s) <= start)
 	{
-		if (temp->index < temp->next->index)
-			return (i);
-		i++;
-		temp = temp -> next;
+		s2 = malloc(sizeof(char));
+		if (s2)
+			s2[0] = '\0';
+		return (s2);
 	}
-	return (0);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	s2 = malloc(sizeof(char) * (len + 1));
+	if (!(s2))
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		s2[i] = s[i + start];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }

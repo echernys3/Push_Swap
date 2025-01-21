@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:31:08 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:55:34 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-t_stack	*secondlast(t_stack *stack)
+int	ft_atoi(const char *nptr)
 {
-	t_stack	*temp;
-
-	if (stack == NULL || stack->next == NULL)
-		return (NULL);
-	temp = stack;
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	return (temp);
-}
-
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
 	int		i;
+	int		sign;
+	long	res;
 
-	temp = *stack;
 	i = 0;
-	while (temp && temp->next)
-	{
-		if (temp->index < temp->next->index)
-			return (i);
+	sign = 1;
+	res = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
-		temp = temp -> next;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
 	}
-	return (0);
+	while (nptr[i] && (ft_isdigit(nptr[i])))
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return ((int)(res * sign));
 }

@@ -6,11 +6,21 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 13:57:19 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:08:06 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_error(int errnum)
+{
+	if (errnum == ERR_ALLOC)
+		ft_printf("Allocation error!");
+	if (errnum == ERR_DATA)
+		ft_printf("Invalid Data, non digit detected!");
+	if (errnum == ERR_DOUBLES)
+		ft_printf("Invalid Data, doubles detected!");
+}
 
 void	exit_error(t_stacks **stacks, int errnum)
 {
@@ -29,7 +39,7 @@ void	push_swap(t_stacks **stacks)
 	if (!(a_sorted((*stacks)->stack_a)))
 		return ;
 	sort(stacks);
-	check_b((*stacks)->stack_b);
+
 	push_swap(stacks);
 }
 

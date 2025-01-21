@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:29 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 17:27:15 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-t_stack	*secondlast(t_stack *stack)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_stack	*temp;
+	char	*newstr;
+	size_t	i;
+	size_t	tot_len;
 
-	if (stack == NULL || stack->next == NULL)
+	tot_len = ft_strlen(s1) + ft_strlen(s2);
+	newstr = malloc(sizeof(char) * (tot_len + 1));
+	if (!(newstr))
 		return (NULL);
-	temp = stack;
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	return (temp);
-}
-
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
 	i = 0;
-	while (temp && temp->next)
+	while (s1[i])
 	{
-		if (temp->index < temp->next->index)
-			return (i);
+		newstr[i] = s1[i];
 		i++;
-		temp = temp -> next;
 	}
-	return (0);
+	i = 0;
+	while (s2[i])
+	{
+		newstr[ft_strlen(s1) + i] = s2[i];
+		i++;
+	}
+	newstr[ft_strlen(s1) + i] = '\0';
+	return (newstr);
 }
+// ft_strlcat(newstr + i, s2, ft_strlen(s2) + 1); ou meme ft_memcpy

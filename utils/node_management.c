@@ -6,9 +6,10 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:15 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 14:34:55 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:37:26 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 static t_stack	**sort_values(t_stack **values, int count)

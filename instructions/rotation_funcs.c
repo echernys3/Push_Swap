@@ -6,11 +6,11 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:58:37 by echernys          #+#    #+#             */
-/*   Updated: 2024/12/05 18:19:59 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:57:21 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	ra(t_stacks **stacks)
 {

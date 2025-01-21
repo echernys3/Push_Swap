@@ -6,11 +6,14 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:45:18 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 13:27:28 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:04:09 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	first_is_smol(t_stack *stack_a, t_stacks **stacks);
+void	last_is_smol(t_stack *last, t_stacks **stacks);
 
 void	sort(t_stack *stack_a, t_stacks **stacks)
 {
@@ -27,7 +30,7 @@ void	sort(t_stack *stack_a, t_stacks **stacks)
 			|| secondtolast->index < stack_a->index)
 			last_is_smol(last, stacks);
 		else
-			first_is_smol((*stacks)->stack_b, stacks);
+			first_is_smol((*stacks)->stack_a, stacks);
 	}
 	else if (stack_a->index > stack_a->next->index)
 	{
@@ -35,7 +38,7 @@ void	sort(t_stack *stack_a, t_stacks **stacks)
 			|| secondtolast->index < stack_a->next->index)
 			last_is_smol(last, stacks);
 		else
-			first_is_smol((*stacks)->stack_b, stacks);
+			first_is_smol((*stacks)->stack_a, stacks);
 	}
 	sort_in_b(stacks);
 }
@@ -50,7 +53,6 @@ void	sort(t_stack *stack_a, t_stacks **stacks)
 
 void	first_is_smol(t_stack *stack_a, t_stacks **stacks)
 {
-
 	// si c'est le deuxieme, on fait un swap ou rotation selon si le 1er est plus petit que le 3eme
 	if (stack_a->index > stack_a->next->index)
 	{
@@ -64,12 +66,13 @@ void	first_is_smol(t_stack *stack_a, t_stacks **stacks)
 
 void	last_is_smol(t_stack *last, t_stacks **stacks)
 {
-	// check si l'avant dernier n'est pas plus petit, ensuite on reverserotate et push
 	if ((secondlast((*stacks)->stack_a)->index) < last->index)
 		rra(stacks);
 	rra(stacks);
 	pb(stacks);
 }
+	// check si l'avant dernier n'est pas plus petit, 
+	// ensuite on reverserotate et push
 
 // On fait LA MEME mais en INVERSE, 
 // donc on trouve le plus petit des 4 et on le balance.

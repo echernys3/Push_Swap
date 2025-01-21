@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:36:54 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/08 11:53:30 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-t_stack	*secondlast(t_stack *stack)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_stack	*temp;
+	size_t	i;
 
-	if (stack == NULL || stack->next == NULL)
-		return (NULL);
-	temp = stack;
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	return (temp);
-}
-
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
 	i = 0;
-	while (temp && temp->next)
+	while (i < n)
 	{
-		if (temp->index < temp->next->index)
-			return (i);
+		if (*(unsigned char *)(s + i) == (unsigned char)c)
+			return ((void *)s + i);
 		i++;
-		temp = temp -> next;
 	}
-	return (0);
+	return (NULL);
 }

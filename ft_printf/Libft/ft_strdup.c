@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:29:39 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:50:31 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-t_stack	*secondlast(t_stack *stack)
+char	*ft_strdup(const char *s)
 {
-	t_stack	*temp;
+	char	*dup;
+	size_t	s_len;
+	size_t	count;
 
-	if (stack == NULL || stack->next == NULL)
+	count = 0;
+	s_len = ft_strlen(s);
+	dup = malloc(sizeof(char) * (s_len + 1));
+	if (!(dup))
 		return (NULL);
-	temp = stack;
-	while (temp->next->next != NULL)
-		temp = temp->next;
-	return (temp);
-}
-
-int	b_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
-	i = 0;
-	while (temp && temp->next)
+	while (s[count])
 	{
-		if (temp->index < temp->next->index)
-			return (i);
-		i++;
-		temp = temp -> next;
+		dup[count] = s[count];
+		count++;
 	}
-	return (0);
+	dup[count] = '\0';
+	return (dup);
 }
