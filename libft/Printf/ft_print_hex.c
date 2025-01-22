@@ -6,49 +6,52 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:49:08 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:01:59 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:30:17 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
-static int	hexlen(unsigned int n)
+int	ft_hex_len(unsigned	int num)
 {
 	int	len;
 
 	len = 0;
-	while (n)
+	while (num != 0)
 	{
 		len++;
-		n /= 16;
+		num = num / 16;
 	}
 	return (len);
 }
 
-static void	puthex(unsigned int n, const char format)
+void	ft_put_hex(unsigned int num, const char format)
 {
-	if (n >= 16)
+	if (num >= 16)
 	{
-		puthex(n / 16, format);
-		puthex(n % 16, format);
+		ft_put_hex(num / 16, format);
+		ft_put_hex(num % 16, format);
 	}
 	else
-		if (n <= 9)
-			ft_putchar(n + '0');
+	{
+		if (num <= 9)
+			ft_putchar_fd((num + '0'), 1);
 		else
 		{
 			if (format == 'x')
-				ft_putchar(n - 10 + 'a');
+				ft_putchar_fd((num - 10 + 'a'), 1);
 			if (format == 'X')
-				ft_putchar(n - 10 + 'A');
+				ft_putchar_fd((num - 10 + 'A'), 1);
 		}
+	}
 }
 
-int	ft_print_hex(unsigned int n, const char format)
+int	ft_print_hex(unsigned int num, const char format)
 {
-	if (n == 0)
-		return (ft_putchar('0'));
+	if (num == 0)
+		return (write(1, "0", 1));
 	else
-		puthex(n, format);
-	return (hexlen(n));
+		ft_put_hex(num, format);
+	return (ft_hex_len(num));
 }

@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:46:21 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:20 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:05:16 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,12 @@ int	b_sorted(t_stack **stack)
 		temp = temp -> next;
 	}
 	return (0);
+}
+
+void	sort_3(t_stack *stack)
+{
+	if (stack->index > stack->next->index)
+	{
+		
+	}
 }

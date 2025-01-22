@@ -6,11 +6,11 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:45:18 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:04:09 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:56:19 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	first_is_smol(t_stack *stack_a, t_stacks **stacks);
 void	last_is_smol(t_stack *last, t_stacks **stacks);

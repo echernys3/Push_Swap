@@ -6,11 +6,11 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:08:06 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:56:16 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	print_error(int errnum)
 {

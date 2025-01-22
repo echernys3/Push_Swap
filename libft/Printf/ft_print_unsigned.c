@@ -6,46 +6,45 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:49:12 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:09:39 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:53:15 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdlib.h>
 
-static char	*miniitoa(unsigned int n)
+char	*ft_uitoa(unsigned int n)
 {
-	char	*str;
-	int	n_len;
+	char	*num;
+	int		len;
 
-	n_len = ft_numlen(n);
-	str = malloc(sizeof(char) * (n_len + 1));
-	if (!str)
+	len = ft_numlen(n);
+	num = (char *)malloc(sizeof(char) * (len + 1));
+	if (!num)
 		return (0);
-	str[n_len--] = '\0';
-	while (n_len >= 0 && n)
+	num[len] = '\0';
+	while (n != 0)
 	{
-		str[n_len] = n % 10 + '0';
-		n /= 10;
-		n_len--;
+		num[len - 1] = n % 10 + 48;
+		n = n / 10;
+		len--;
 	}
-	return (str);
+	return (num);
 }
 
 int	ft_print_unsigned(unsigned int n)
 {
-	int		print_len;
-	char	*str;
+	int		print_length;
+	char	*num;
 
-	print_len = 0;
+	print_length = 0;
 	if (n == 0)
-		print_len += ft_putchar('0');
-	else 
+		print_length += write(1, "0", 1);
+	else
 	{
-		str = miniitoa(n);
-		while(str[print_len])
-			ft_putchar(str[print_len++]);
-		print_len--;
-		free(str);
+		num = ft_uitoa(n);
+		print_length += ft_printstr(num);
+		free(num);
 	}
-	return (print_len);
+	return (print_length);
 }

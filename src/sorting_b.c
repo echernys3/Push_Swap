@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:39:56 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:01:41 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:04:49 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	swap(t_stack *stack_b, t_stacks **stacks);
 
 void	sort_in_b(t_stack *stack_b, t_stacks **stacks)
 {
-	if (stack_b->next == NULL || b_sorted(stacks))
+	if (stack_b->next == NULL || b_sorted(stacks) || stack_b->size == 1)
 		return ;
+	if (stack_b->size == 2 && stack_b->index < stack_b->next->index)
+		sb(stacks);
+	if (stack->size == 3)
+		//ACOPIERLECODE DE SORT 3 MAIS A L'INVERS;
 	if (stack_b->index < (ft_lstlast(stack_b))->index)
 		rotate(stack_b, stacks);
 	if (stack_b->index < stack_b->next->index)
