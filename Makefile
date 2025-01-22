@@ -1,6 +1,7 @@
 NAME = push_swap
 CC = cc
 CCFLAGS = -Wall -Wextra -Werror -c
+DEBUG_FLAGS = -g
 INCLUDES = -I includes
 SRC = $(addprefix src/, main.c sorting_a.c sorting_b.c) \
 	$(addprefix utils/, algo_utils.c node_management.c utils.c) \
@@ -9,6 +10,9 @@ OBJ_PATH = obj/
 OBJ = $(SRC:%.c=$(OBJ_PATH)%.o)
 LIBFT_PATH = libft/
 LIBFT = -L$(LIBFT_PATH) -lft
+
+lldb: CCFLAGS += $(DEBUG_FLAGS)
+lldb: re
 
 all: $(OBJ_PATH) $(NAME)
 
@@ -35,4 +39,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lldb

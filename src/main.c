@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:43 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/22 15:46:25 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:13:13 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ void	exit_error(t_stacks **stacks, int errnum)
 
 void	push_swap(t_stacks **stacks)
 {
+	if ((*stacks)->size_a < 3)
+	{
+		if ((*stacks)->size_a == 2 && (*stacks)->stack_a->index
+			< (*stacks)->stack_a->next->index)
+			sa(&(*stacks)->stack_a, stacks);
+		return ;
+	}
 	if ((*stacks)->size_a == 3)
 		sort_3((*stacks)->stack_a, stacks);
 	if (!(a_sorted((*stacks)->stack_a)))
@@ -52,12 +59,14 @@ int	main(int argc, char **argv)
 	stacks = malloc(sizeof(t_stacks));
 	if (!stacks)
 		exit_error(stacks, ERR_ALLOC);
+	ft_printf("Checkpoint 1!");
 	while (argc--)
 	{
 		newnode = create_node(stacks, argv[i]);
 		ps_stackadd_back((*stacks)->stack_a, newnode);
 		i++;
 	}
+	ft_printf("Checkpoint 2!");
 	index_t_stack(stacks, (*stacks)->stack_a);
 	check_doubles((*stacks)->stack_a, stacks);
 	push_swap(stacks);
