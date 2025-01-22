@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:39:56 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/22 12:04:49 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:43:11 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,27 @@ void	swap(t_stack *stack_b, t_stacks **stacks);
 
 void	sort_in_b(t_stack *stack_b, t_stacks **stacks)
 {
-	if (stack_b->next == NULL || b_sorted(stacks) || stack_b->size == 1)
+	if (stack_b->next == NULL || b_sorted(&stack_b) || (*stacks)->size_b == 1)
 		return ;
-	if (stack_b->size == 2 && stack_b->index < stack_b->next->index)
-		sb(stacks);
-	if (stack->size == 3)
-		//ACOPIERLECODE DE SORT 3 MAIS A L'INVERS;
-	if (stack_b->index < (ft_lstlast(stack_b))->index)
+	if ((*stacks)->size_b == 2 && stack_b->index < stack_b->next->index)
+		sb(&stack_b, stacks);
+	if ((*stacks)->size_b == 3)
+	{
+		if (stack_b->index < stack_b->next->index)
+		{
+			if (stack_b->index < stack_b->next->next->index)
+				rb(stacks);
+			else
+				sb(&stack_b, stacks);
+		}
+		else if (stack_b->next->index < stack_b->next->next->index)
+		{
+			rb(stacks);
+			sb(&stack_b, stacks);
+			rrb(stacks);
+		}
+	}
+	if (stack_b->index < (ps_lstlast(stack_b))->index)
 		rotate(stack_b, stacks);
 	if (stack_b->index < stack_b->next->index)
 		swap(stack_b, stacks);
@@ -32,13 +46,13 @@ void	sort_in_b(t_stack *stack_b, t_stacks **stacks)
 
 void	rotate(t_stack *stack_b, t_stacks **stacks)
 {
-	if ((stack_b->index > secondlast(stack_b))->index)
+	if ((stack_b->index > (secondlast(stack_b))->index))
 		last_not_sorted(stack_b, stacks);
 	else
 	{
 		if ((*stacks)->stack_a->index > (*stacks)->stack_a->next->index
 			&& (*stacks)->stack_a->next->index
-			< ft_lstlast((*stacks)->stack_a)->index)
+			< ps_lstlast((*stacks)->stack_a)->index)
 			rr(stacks);
 		else
 			rb(stacks);
@@ -47,19 +61,22 @@ void	rotate(t_stack *stack_b, t_stacks **stacks)
 
 void	last_not_sorted(t_stack *stack_b, t_stacks **stacks)
 {
-	while (2--)
+	int	i;
+
+	i = 2;
+	while (i--)
 	{
 		if ((*stacks)->stack_a->index
-			> ft_lstlast((*stacks)->stack_a)->index
+			> ps_lstlast((*stacks)->stack_a)->index
 			&& (*stacks)->stack_a->next->index
-			> ft_lstlast((*stacks)->stack_a)->index)
+			> ps_lstlast((*stacks)->stack_a)->index)
 			rrr(stacks);
 		else
 			rrb(stacks);
 	}
-	sb(stacks);
+	sb(&stack_b, stacks);
 	rb(stacks);
-	sb(stacks);
+	sb(&stack_b, stacks);
 	rb(stacks);
 	rb(stacks);
 }
@@ -67,7 +84,7 @@ void	last_not_sorted(t_stack *stack_b, t_stacks **stacks)
 void	swap(t_stack *stack_b, t_stacks **stacks)
 {
 	if ((*stacks)->stack_a->index > (*stacks)->stack_a->next->index)
-		ss(stacks, stacks);
+		ss(*stacks);
 	else
-		sb(stacks, stacks);
+		sb(&stack_b, stacks);
 }

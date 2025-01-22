@@ -6,29 +6,11 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:24:31 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 16:01:48 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:46:38 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	a_sorted(t_stack **stack)
-{
-	t_stack	*temp;
-	int		i;
-
-	temp = *stack;
-	i = 0;
-	while (temp && temp->next)
-	{
-		if (temp->index > temp->next->index)
-			return (i);
-		i++;
-		temp = temp -> next;
-	}
-	return (0);
-}
-
 
 int	ps_atoi(const char *str, t_stacks **stacks)
 {
@@ -39,19 +21,19 @@ int	ps_atoi(const char *str, t_stacks **stacks)
 	i = 0;
 	sign = 1;
 	res = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (nptr[i] == '-')
+		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (nptr[i])
+	while (str[i])
 	{
-		if (!ft_isdigit(nptr[i]))
+		if (!ft_isdigit(str[i]))
 			exit_error(stacks, ERR_DATA);
-		res = res * 10 + (nptr[i] - '0');
+		res = res * 10 + (str[i] - '0');
 		i++;
 	}
 	return ((int)(res * sign));
@@ -71,11 +53,10 @@ void	check_doubles(t_stack *stack, t_stacks **stacks)
 		{
 			if (current->number == runner->number)
 				exit_error(stacks, ERR_DOUBLES);
-			runner->next;
+			runner = runner->next;
 		}
-		current->next;
+		current = current->next;
 	}
-	return (false);
 }
 
 void	freer(t_stack *stack)
@@ -89,4 +70,28 @@ void	freer(t_stack *stack)
 		free(stack);
 		stack = temp;
 	}
+}
+
+t_stack	*ps_lstlast(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst -> next != NULL)
+		lst = lst -> next;
+	return (lst);
+}
+
+size_t	ps_stacksize(t_stack *lst)
+{
+	unsigned int	counter;
+
+	counter = 0;
+	if (!lst)
+		return (0);
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		counter++;
+	}
+	return (counter);
 }

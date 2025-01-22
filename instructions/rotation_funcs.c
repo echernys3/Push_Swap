@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:58:37 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 15:57:21 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:32:43 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ra(t_stacks **stacks)
 
 	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_a);
+	last = ps_lstlast((*stacks)->stack_a);
 	temp = (*stacks)->stack_a->next;
 	last->next = (*stacks)->stack_a;
 	(*stacks)->stack_a->next = NULL;
@@ -35,7 +35,7 @@ void	rb(t_stacks **stacks)
 
 	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_b);
+	last = ps_lstlast((*stacks)->stack_b);
 	temp = (*stacks)->stack_b->next;
 	last->next = (*stacks)->stack_b;
 	(*stacks)->stack_b->next = NULL;
@@ -51,7 +51,7 @@ static void	copy_ra(t_stacks **stacks)
 
 	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_a);
+	last = ps_lstlast((*stacks)->stack_a);
 	temp = (*stacks)->stack_a->next;
 	last->next = (*stacks)->stack_a;
 	(*stacks)->stack_a->next = NULL;
@@ -65,7 +65,7 @@ static void	copy_rb(t_stacks **stacks)
 
 	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_b);
+	last = ps_lstlast((*stacks)->stack_b);
 	temp = (*stacks)->stack_b->next;
 	last->next = (*stacks)->stack_b;
 	(*stacks)->stack_b->next = NULL;

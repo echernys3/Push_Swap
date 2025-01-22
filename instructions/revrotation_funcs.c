@@ -19,7 +19,7 @@ void	rra(t_stacks **stacks)
 
 	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_a);
+	last = ps_lstlast((*stacks)->stack_a);
 	temp = secondlast((*stacks)->stack_a);
 	temp->next = NULL;
 	last->next = (*stacks)->stack_a;
@@ -35,7 +35,7 @@ void	rrb(t_stacks **stacks)
 
 	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_b);
+	last = ps_lstlast((*stacks)->stack_b);
 	temp = secondlast((*stacks)->stack_b);
 	temp->next = NULL;
 	last->next = (*stacks)->stack_b;
@@ -51,7 +51,7 @@ static void	copy_rra(t_stacks **stacks)
 
 	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_a);
+	last = ps_lstlast((*stacks)->stack_a);
 	temp = secondlast((*stacks)->stack_a);
 	temp->next = NULL;
 	last->next = (*stacks)->stack_a;
@@ -65,7 +65,7 @@ static void	copy_rrb(t_stacks **stacks)
 
 	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
 		return ;
-	last = ft_lstlast((*stacks)->stack_b);
+	last = ps_lstlast((*stacks)->stack_b);
 	temp = secondlast((*stacks)->stack_b);
 	temp->next = NULL;
 	last->next = (*stacks)->stack_b;

@@ -6,11 +6,11 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:18:15 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 14:37:26 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:44:14 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../includes/push_swap.h"
 
 static t_stack	**sort_values(t_stack **values, int count)
 {
@@ -50,16 +50,16 @@ static t_stack	**update_index(t_stack **values, int count)
 	return (values);
 }
 
-t_stack	**index_t_stack(t_stacks **stacks, t_stack *head)
+void	index_t_stack(t_stacks **stacks, t_stack *head)
 {
 	t_stack	*temp;
 	int		count;
 	t_stack	**values;
 
 	if (head == NULL)
-		return (NULL);
+		exit_error (stacks, ERR_UNK);
 	temp = head;
-	values = malloc(ft_lstsize(temp) * sizeof(*t_stack));
+	values = malloc(ps_stacksize(temp) * sizeof(t_stack));
 	if (!values)
 		exit_error(stacks, ERR_ALLOC);
 	temp = head;
@@ -72,7 +72,6 @@ t_stack	**index_t_stack(t_stacks **stacks, t_stack *head)
 	}
 	values = sort_values(values, count);
 	update_index(values, count);
-	return (head);
 }
 
 t_stack	*create_node(t_stacks **stacks, char *number)
@@ -82,7 +81,24 @@ t_stack	*create_node(t_stacks **stacks, char *number)
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		exit_error(stacks, ERR_ALLOC);
-	new_node -> number = ps_atoi(number);
+	new_node -> number = ps_atoi(number, stacks);
 	new_node -> next = NULL;
 	return (new_node);
+}
+
+void	ps_stackadd_back(t_stack *stack, t_stack *newnode)
+{
+	t_stack	*current;
+
+	current = stack;
+	if (!newnode)
+		return ;
+	if (!(stack))
+		stack = newnode;
+	else
+	{
+		while (current -> next != NULL)
+			current = current -> next;
+		current->next = newnode;
+	}
 }

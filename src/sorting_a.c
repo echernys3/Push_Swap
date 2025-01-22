@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:45:18 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/22 13:56:19 by echernys         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:32:15 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort(t_stack *stack_a, t_stacks **stacks)
 	t_stack	*last;
 	t_stack	*secondtolast;
 
-	last = ft_lstlast(stack_a);
+	last = ps_lstlast(stack_a);
 	secondtolast = secondlast(stack_a);
 	//on determine si le plus petit est dans les 2 premiers ou 2 derniers
 	//check lequel des 2 premiers est plus petit
@@ -40,7 +40,7 @@ void	sort(t_stack *stack_a, t_stacks **stacks)
 		else
 			first_is_smol((*stacks)->stack_a, stacks);
 	}
-	sort_in_b(stacks);
+	sort_in_b((*stacks)->stack_b, stacks);
 }
 
 // une fois qu'on a trouvé le plus petit des 4, 
@@ -58,7 +58,7 @@ void	first_is_smol(t_stack *stack_a, t_stacks **stacks)
 	{
 		if (stack_a->index > stack_a->next->next->index)
 			ra(stacks);
-		sa(stacks, stacks);
+		sa(&stack_a, stacks);
 	}
 	// si le 1er est le plus petit des 3, on push tout simplement sinon il passe en dernier
 	pb(stacks);
