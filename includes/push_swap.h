@@ -6,7 +6,7 @@
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:28:45 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/22 16:42:18 by echernys         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:05:49 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_stacks
 t_stack	*create_node(t_stacks **stacks, char *number);
 t_stack	*ps_lstlast(t_stack *lst);
 void	index_t_stack(t_stacks **stacks, t_stack *head);
-void	ps_stackadd_back(t_stack *stack, t_stack *newnode);
+void	ps_stackadd_back(t_stack **stack, t_stack *newnode);
 size_t	ps_stacksize(t_stack *lst);
 
 //Algo utils
