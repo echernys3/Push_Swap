@@ -5,41 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 16:24:44 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/21 15:57:15 by echernys         ###   ########.fr       */
+/*   Created: 2025/03/06 17:15:04 by echernys          #+#    #+#             */
+/*   Updated: 2025/03/07 15:51:59 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	pa(t_stacks **stacks)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
 
-	if ((*stacks)->stack_b == NULL)
+	if (*stack_b == NULL)
 		return ;
-	temp = ((*stacks)->stack_b);
-	(*stacks)->stack_b = (*stacks)->stack_b->next;
-	temp->next = (*stacks)->stack_a;
-	(*stacks)->stack_a = temp;
-	(*stacks)->size_a++;
-	(*stacks)->size_b--;
-	(*stacks)->operations++;
+	temp = (*stack_b);
+	*stack_b = (*stack_b)->next;
+	temp->next = *stack_a;
+	*stack_a = temp;
 	ft_printf("pa\n");
+	temp = NULL;
 }
 
-void	pb(t_stacks **stacks)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
 
-	if ((*stacks)->stack_a == NULL)
+	if (*stack_a == NULL)
 		return ;
-	temp = ((*stacks)->stack_a);
-	(*stacks)->stack_a = (*stacks)->stack_a->next;
-	temp->next = (*stacks)->stack_b;
-	(*stacks)->stack_b = temp;
-	(*stacks)->size_b++;
-	(*stacks)->size_a--;
-	(*stacks)->operations++;
+	temp = (*stack_a);
+	*stack_a = (*stack_a)->next;
+	if (*stack_b)
+		temp->next = *stack_b;
+	else
+		temp->next = NULL;
+	*stack_b = temp;
 	ft_printf("pb\n");
+	temp = NULL;
 }

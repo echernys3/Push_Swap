@@ -5,77 +5,82 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 17:58:37 by echernys          #+#    #+#             */
-/*   Updated: 2025/01/22 15:32:43 by echernys         ###   ########.fr       */
+/*   Created: 2025/03/06 15:38:08 by echernys          #+#    #+#             */
+/*   Updated: 2025/03/10 17:26:07 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ra(t_stacks **stacks)
+void	ra(t_stack **stack_a)
 {
 	t_stack	*temp;
 	t_stack	*last;
 
-	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
+	if (*stack_a == NULL || (*stack_a)->next == NULL)
 		return ;
-	last = ps_lstlast((*stacks)->stack_a);
-	temp = (*stacks)->stack_a->next;
-	last->next = (*stacks)->stack_a;
-	(*stacks)->stack_a->next = NULL;
-	(*stacks)->stack_a = temp;
-	(*stacks)->operations++;
+	last = ps_lstlast(*stack_a);
+	temp = (*stack_a)->next;
+	last->next = *stack_a;
+	(*stack_a)->next = NULL;
+	*stack_a = temp;
 	ft_printf("ra\n");
+	temp = NULL;
+	last = NULL;
 }
 
-void	rb(t_stacks **stacks)
+void	rb(t_stack **stack_b)
 {
 	t_stack	*temp;
 	t_stack	*last;
 
-	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
+	if (*stack_b == NULL || (*stack_b)->next == NULL)
 		return ;
-	last = ps_lstlast((*stacks)->stack_b);
-	temp = (*stacks)->stack_b->next;
-	last->next = (*stacks)->stack_b;
-	(*stacks)->stack_b->next = NULL;
-	(*stacks)->stack_b = temp;
-	(*stacks)->operations++;
+	last = ps_lstlast(*stack_b);
+	temp = (*stack_b)->next;
+	last->next = *stack_b;
+	(*stack_b)->next = NULL;
+	*stack_b = temp;
 	ft_printf("rb\n");
+	temp = NULL;
+	last = NULL;
 }
 
-static void	copy_ra(t_stacks **stacks)
+static void	copy_ra(t_stack **stack_a)
 {
 	t_stack	*temp;
 	t_stack	*last;
 
-	if ((*stacks)->stack_a == NULL || (*stacks)->stack_a->next == NULL)
+	if (*stack_a == NULL || (*stack_a)->next == NULL)
 		return ;
-	last = ps_lstlast((*stacks)->stack_a);
-	temp = (*stacks)->stack_a->next;
-	last->next = (*stacks)->stack_a;
-	(*stacks)->stack_a->next = NULL;
-	(*stacks)->stack_a = temp;
+	last = ps_lstlast(*stack_a);
+	temp = (*stack_a)->next;
+	last->next = *stack_a;
+	(*stack_a)->next = NULL;
+	*stack_a = temp;
+	temp = NULL;
+	last = NULL;
 }
 
-static void	copy_rb(t_stacks **stacks)
+static void	copy_rb(t_stack **stack_b)
 {
 	t_stack	*temp;
 	t_stack	*last;
 
-	if ((*stacks)->stack_b == NULL || (*stacks)->stack_b->next == NULL)
+	if (*stack_b == NULL || (*stack_b)->next == NULL)
 		return ;
-	last = ps_lstlast((*stacks)->stack_b);
-	temp = (*stacks)->stack_b->next;
-	last->next = (*stacks)->stack_b;
-	(*stacks)->stack_b->next = NULL;
-	(*stacks)->stack_b = temp;
+	last = ps_lstlast(*stack_b);
+	temp = (*stack_b)->next;
+	last->next = *stack_b;
+	(*stack_b)->next = NULL;
+	*stack_b = temp;
+	temp = NULL;
+	last = NULL;
 }
 
-void	rr(t_stacks **stacks)
+void	rr(t_stack **stack_a, t_stack **stack_b)
 {
-	copy_ra(stacks);
-	copy_rb(stacks);
-	(*stacks)->operations++;
+	copy_ra(stack_a);
+	copy_rb(stack_b);
 	ft_printf("rr\n");
 }

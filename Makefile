@@ -1,42 +1,52 @@
+# Variables
 NAME = push_swap
 CC = cc
-CCFLAGS = -Wall -Wextra -Werror -c
-DEBUG_FLAGS = -g
-INCLUDES = -I includes
-SRC = $(addprefix src/, main.c sorting_a.c sorting_b.c) \
-	$(addprefix utils/, algo_utils.c node_management.c utils.c) \
-	$(addprefix instructions/, push_funcs.c revrotation_funcs.c rotation_funcs.c swap_funcs.c)
-OBJ_PATH = obj/
-OBJ = $(SRC:%.c=$(OBJ_PATH)%.o)
+CFLAGS = -Wall -Wextra -Werror -c -g
 LIBFT_PATH = libft/
-LIBFT = -L$(LIBFT_PATH) -lft
+LIBFT_A = $(LIBFT_PATH)libft.a
 
-lldb: CCFLAGS += $(DEBUG_FLAGS)
-lldb: re
+# Source files and objects
+SRC = $(addprefix src/, main.c push_swap.c radix.c) \
+	$(addprefix utils/, args_utils.c exit.c index_utils.c list_utils.c more_list_utils.c ps_split.c) \
+	$(addprefix instructions/, push_funcs.c revrotation_funcs.c rotation_funcs.c swap_funcs.c)
+OBJ = $(SRC:.c=.o)
+OBJ_DIR = obj/
+OBJ_FILES = $(addprefix $(OBJ_DIR), $(OBJ))
 
-all: $(OBJ_PATH) $(NAME)
+# Dependency files
+DEP = $(OBJ_FILES:.o=.d)
 
-$(OBJ_PATH)%.o: %.c | $(OBJ_PATH)
-	mkdir -p $(dir $@)
-	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+# Rules
+all: $(NAME)
 
-$(OBJ_PATH):
-	mkdir -p $(OBJ_PATH)
+# Main target
+$(NAME): $(OBJ_FILES) $(LIBFT_A)
+	$(CC) $(OBJ_FILES) -o $(NAME) -L$(LIBFT_PATH) -lft
 
-$(NAME): $(OBJ) $(LIBFT_PATH)libft.a
-	$(CC) $(OBJ) -o $(NAME) $(LIBFT)
+# Object files
+$(OBJ_DIR)%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -I includes -MMD -MP -c $< -o $@
 
-$(LIBFT_PATH)libft.a:
-	$(MAKE) -C $(LIBFT_PATH)
+# Include dependencies
+-include $(DEP)
 
+# Libft build only if needed
+$(LIBFT_A):
+	$(MAKE) -C $(LIBFT_PATH) all
+
+# Clean
 clean:
+	rm -rf $(OBJ_DIR)
 	make -C $(LIBFT_PATH) clean
-	rm -rf $(OBJ_PATH)
 
+# Full clean
 fclean: clean
-	make -C $(LIBFT_PATH) fclean
 	rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean
 
+# Rebuild
 re: fclean all
 
-.PHONY: all clean fclean re lldb
+# .SILENT: fclean clean all
+.PHONY: all clean fclean re

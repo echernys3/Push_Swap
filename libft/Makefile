@@ -1,20 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: echernys <echernys@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/22 13:54:05 by echernys          #+#    #+#              #
-#    Updated: 2025/01/22 13:54:06 by echernys         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libft.a
 CC = cc
 CCFLAGS = -Wall -Wextra -Werror
 AR = ar
-ARFLAGS = rcs 
+ARFLAGS = rcs
 INCLUDES = -IPrintf -ILibft
 PRINTF_SRC = $(addprefix Printf/, ft_printf_utils.c ft_print_hex.c ft_print_ptr.c \
 		ft_print_unsigned.c ft_printf.c)
@@ -33,29 +21,36 @@ LIBFT_OBJ = $(LIBFT_SRC:Libft/%.c=$(OBJ_PATH)Libft/%.o)
 OBJS = $(PRINTF_OBJ) $(LIBFT_OBJ)
 DEPS = $(OBJS:.o=.d)
 
-all: $(OBJ_PATH) $(NAME)
+# Default target
+all: $(NAME)
 
+# Create object folders
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)Printf $(OBJ_PATH)Libft
 
-$(OBJ_PATH)Printf/%.o: Printf/%.c
-	$(CC) $(CCFLAGS) $(INCLUDES) -MMD -c $< -o $@
+# Compile .c -> .o with dependencies
+$(OBJ_PATH)Printf/%.o: Printf/%.c | $(OBJ_PATH)
+	$(CC) $(CCFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
-$(OBJ_PATH)Libft/%.o: Libft/%.c
-	$(CC) $(CCFLAGS) $(INCLUDES) -MMD -c $< -o $@
+$(OBJ_PATH)Libft/%.o: Libft/%.c | $(OBJ_PATH)
+	$(CC) $(CCFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
+# Archive to libft.a
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
+# Clean .o files (keep dependencies unless fclean)
 clean:
 	rm -rf $(OBJ_PATH)
-	rm -f $(DEPS)
 
+# Full clean including libft.a
 fclean: clean
 	rm -f $(NAME)
 
+# Proper re: clean everything, then rebuild
 re: fclean all
 
 -include $(DEPS)
 
+# Phony rules
 .PHONY: all clean fclean re
